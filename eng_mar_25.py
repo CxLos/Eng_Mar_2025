@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
 from folium.plugins import MousePosition
 import plotly.express as px
-import datetime
+from datetime import datetime
 import folium
 import os
 import sys
@@ -49,8 +49,8 @@ df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 df['Date of Activity'] = pd.to_datetime(df['Date of Activity'], errors='coerce')
 df = df[df['Date of Activity'].dt.month == 3]
 
-# Index using iloc
-# print(df.iloc[:10, [1, 2]])
+# Get the reporting month:
+current_month = datetime(2025, 3, 1).strftime("%B")
 
 # print(df.head(10))
 # print('Total Marketing Events: ', len(df))
@@ -1033,12 +1033,12 @@ app.layout = html.Div(
 
 print(f"Serving Flask app '{current_file}'! 🚀")
 
-# if __name__ == '__main__':
-#     app.run_server(debug=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
                 #    False)
 # =================================== Updated Database ================================= #
 
-# updated_path = 'data/eng_mar_2025.xlsx'
+# updated_path = f'data/Engagement_{current_month}_{Report Year}.xlsx'
 # data_path = os.path.join(script_dir, updated_path)
 # df.to_excel(data_path, index=False)
 # print(f"DataFrame saved to {data_path}")
